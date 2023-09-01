@@ -36,6 +36,7 @@ const Welcome = () => {
         <span> Your Profiel is incomplete</span>
         <Link to="/profile">Complete Now</Link>
       </div>
+     <Link to='expenses'><button>Add Expenses</button></Link>
       <button onClick={verifyEmailHandler}>Verify Email</button>
     </div>
   );

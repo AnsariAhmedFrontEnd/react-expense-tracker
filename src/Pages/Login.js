@@ -34,7 +34,6 @@ const Login = () => {
 
         const response= await axios.post(Loginurl, authData);
         authCtx.login(response.data.idToken);
-        console.log(authCtx.token);
         navigate('/welcome')
        
       } catch (error) {
