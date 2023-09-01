@@ -8,7 +8,7 @@ const NavigationBar = () => {
 
     const logoutHandler = () => {
         authCtx.logout();
-        navigate('/')
+        navigate('/');
     };
     return (
         <header>
