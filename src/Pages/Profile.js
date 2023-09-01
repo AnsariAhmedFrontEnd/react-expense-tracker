@@ -46,7 +46,6 @@ const UpdateProfile = () => {
     const response = await axios.post(url, {
       idToken:token
     });
-    console.log(response);
 
     if(response.status === 200) {
       setUserData(response.data.users[0]);
