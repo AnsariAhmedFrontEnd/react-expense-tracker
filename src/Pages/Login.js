@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useRef, useState } from "react";
 import AuthContext from "../store/auth-context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
   const authCtx = useContext(AuthContext);
@@ -70,6 +70,7 @@ const Login = () => {
     }
   };
 
+
   return (
     <div>
       <form onSubmit={submitHandler}>
@@ -94,6 +95,7 @@ const Login = () => {
       <button onClick={toggleButton}>
         {isLogin ? "Have an account? Login" : "Don't have an account ? Signup"}
       </button>
+      <Link to='forgot-password'><button>Fogot Password</button></Link>
     </div>
   );
 };
