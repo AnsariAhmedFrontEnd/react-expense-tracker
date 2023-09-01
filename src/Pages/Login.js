@@ -1,7 +1,11 @@
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import AuthContext from "../store/auth-context";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
+  const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const toggleButton = () => {
     setIsLogin((prevStat) => !prevStat);
@@ -29,8 +33,10 @@ const Login = () => {
         };
 
         const response= await axios.post(Loginurl, authData);
-       console.log(response.data.idToken);
-       localStorage.setItem('token', response.data.idToken);
+        authCtx.login(response.data.idToken);
+        console.log(authCtx.token);
+        navigate('/welcome')
+       
       } catch (error) {
         alert(error.response.data.error.message);
       }
@@ -51,7 +57,10 @@ const Login = () => {
             returnSecureToken: true,
           };
 
-          await axios.post(url, authData);
+          const response = await axios.post(url, authData);
+          authCtx.login(response.data.idToken);
+          alert('Signup successful, You can Login now');
+          navigate('/')
         } catch (error) {
           alert(error.response.data.error.message);
         }
