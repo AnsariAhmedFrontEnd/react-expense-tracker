@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useRef } from "react";
+import './ForgotPasswordPage.css'
 
 const ForgotPasswordPage = () => {
     
@@ -27,10 +28,20 @@ const ForgotPasswordPage = () => {
     }
   };
   return (
-    <form onSubmit={forgotPasswordHandler}>
-      <input placeholder="Enter Your Email" ref={emailInputRef} />
-      <button>Send Link</button>
-    </form>
+    <div className="forgot-password-container">
+      <h2>Forgot Password</h2>
+      <form onSubmit={forgotPasswordHandler} className="password-reset-form">
+        <input
+          type="email"
+          placeholder="Enter Your Email"
+          ref={emailInputRef}
+          className="email-input"
+        />
+        <button type="submit" className="send-link-button">
+          Send Reset Link
+        </button>
+      </form>
+    </div>
   );
 };
 

@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import AuthContext from "../store/auth-context";
 import { useNavigate } from "react-router-dom";
+import './NavigationBar.css';
 
 const NavigationBar = () => {
     const authCtx = useContext(AuthContext);
+    const isLoggedIn = authCtx.isLoggedIn;
     const navigate = useNavigate();
 
     const logoutHandler = () => {
@@ -11,9 +13,9 @@ const NavigationBar = () => {
         navigate('/');
     };
     return (
-        <header>
-            <h2>Expense Tracker</h2>
-            <button onClick={logoutHandler}>Logout</button>
+        <header className="navbar">
+            <h2>SpendSmartly</h2>
+            {isLoggedIn && <button onClick={logoutHandler}>Logout</button>}
         </header>
     )
 };

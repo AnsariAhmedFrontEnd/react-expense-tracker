@@ -1,0 +1,58 @@
+/* Welcome.css */
+
+  
+  .message {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+    background-color: #f8f9fa;
+    background-color: #022a3a;
+    color:#fff;
+    align-items: center;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+
+  .text {
+    margin-right: 20px;
+  }
+  .link-button {
+    text-decoration: none;
+    color: #fff;
+    background-color: #0c6942;
+    padding: 5px 10px;
+    margin: 10px;
+    border-radius: 12px;
+  }
+  
+  .link-button:hover {
+    background-color: #0056b3; /* Button background color on hover */
+  }
+
+  .add-expense {
+display: flex;
+justify-content: center;
+margin-top: 50px;
+
+  }
+  
+  .button {
+    background-color: #006790;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: auto;
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Button background color on hover */
+  }
+  

@@ -2,6 +2,8 @@ import axios from "axios";
 import { useContext, useRef, useState } from "react";
 import AuthContext from "../store/auth-context";
 import { useNavigate, Link } from "react-router-dom";
+import './Login.css';
+
 const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
   const authCtx = useContext(AuthContext);
@@ -71,9 +73,9 @@ const Login = () => {
 
 
   return (
-    <div>
+    <div className="login">
       <form onSubmit={submitHandler}>
-        <h2>{isLogin ? "Signup" : "Login"}</h2>
+        <h2 className="text-lg text-gray-900">{isLogin ? "Signup" : "Login"}</h2>
         <input type="email" placeholder="Email" required ref={emailInputRef} />
         <input
           type="password"
@@ -90,11 +92,14 @@ const Login = () => {
           />
         )}
         <button type="submit">{isLogin ? "Signup" : "Login"}</button>
-      </form>
-      <button onClick={toggleButton}>
+        <Link to='forgot-password'><button>Fogot Password</button></Link>
+        <button onClick={toggleButton}>
         {isLogin ? "Have an account? Login" : "Don't have an account ? Signup"}
       </button>
-      <Link to='forgot-password'><button>Fogot Password</button></Link>
+      
+      </form>
+      
+      
     </div>
   );
 };

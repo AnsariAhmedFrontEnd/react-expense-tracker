@@ -1,0 +1,30 @@
+.navbar {
+  background-color: #006790;
+  padding: 1rem;
+  color: #fff; /* Header text color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.navbar h2 {
+  font-size: 1.5rem; /* Title font size */
+  margin: 0;
+}
+
+.navbar button {
+  background-color: #072a50; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar button:hover {
+  background-color: #000000; /* Button background color on hover */
+  color: #fff; /* Button text color on hover */
+}
