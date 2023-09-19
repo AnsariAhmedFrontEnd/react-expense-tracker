@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import AuthContext from "../store/auth-context";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import './Profile.css'
 
 const UpdateProfile = () => {
-  const authCtx = useContext(AuthContext);
+  const tokenId = useSelector(state => state.auth.token);
   const displayNameRef = useRef();
   const photoUrlRef = useRef();
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const UpdateProfile = () => {
   const updateProfileHandler = async (event) => {
     event.preventDefault();
 
-    const token = authCtx.token;
+    const token = tokenId
     const displayName = displayNameRef.current.value;
     const photoUrl = photoUrlRef.current.value;
 
@@ -42,7 +42,7 @@ const UpdateProfile = () => {
   const getUserDetails = useCallback(async () => {
     const url =
       "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyC88eK8XQXRR6cU6LtbTCJppJE6RKh3xAA";
-    const token = authCtx.token;
+    const token = tokenId;
     const response = await axios.post(url, {
       idToken: token,
     });
@@ -52,7 +52,7 @@ const UpdateProfile = () => {
     } else {
       console.log("Failed to Fetch");
     }
-  }, [authCtx.token]);
+  }, [tokenId]);
 
   useEffect(() => {
     getUserDetails();

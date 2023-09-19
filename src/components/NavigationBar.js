@@ -1,15 +1,16 @@
-import { useContext } from "react";
-import AuthContext from "../store/auth-context";
 import { useNavigate } from "react-router-dom";
+import { authActions } from "../store/authReducer";
+import { useDispatch, useSelector } from "react-redux";
 import './NavigationBar.css';
 
 const NavigationBar = () => {
-    const authCtx = useContext(AuthContext);
-    const isLoggedIn = authCtx.isLoggedIn;
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector(state => state.auth.isAuthenticated);
     const navigate = useNavigate();
 
     const logoutHandler = () => {
-        authCtx.logout();
+        dispatch(authActions.logout());
+        localStorage.removeItem('token');
         navigate('/');
     };
     return (

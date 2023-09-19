@@ -2,26 +2,27 @@ import Login from "./Pages/Login";
 import { Route, Routes } from "react-router-dom";
 import Welcome from "./Pages/Welcom";
 import Profile from "./Pages/Profile";
-import { useContext } from "react";
-import AuthContext from "./store/auth-context";
 import Layout from "./components/Layout";
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
-import Expenses from './Pages/Expenses';
+import Expenses from "./Pages/Expenses";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const authCtx = useContext(AuthContext);
+  const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
 
-  const isLoggedIn = authCtx.isLoggedIn;
-  
   return (
     <Layout>
-    <Routes>
-      {!isLoggedIn && <Route path="/" element={<Login />} />}
-      {isLoggedIn && <Route path="/welcome" element={<Welcome />} />}
-      {isLoggedIn && <Route path="/profile" element={<Profile />} />}
-      {isLoggedIn && <Route path="/welcome/expenses" element={<Expenses />} />}
-      {!isLoggedIn && <Route path='forgot-password' element={<ForgotPasswordPage />} />}
-    </Routes>
+      <Routes>
+        {!isLoggedIn && <Route path="/" element={<Login />} />}
+        {isLoggedIn && <Route path="/welcome" element={<Welcome />} />}
+        {isLoggedIn && <Route path="/profile" element={<Profile />} />}
+        {isLoggedIn && (
+          <Route path="/welcome/expenses" element={<Expenses />} />
+        )}
+        {!isLoggedIn && (
+          <Route path="forgot-password" element={<ForgotPasswordPage />} />
+        )}
+      </Routes>
     </Layout>
   );
 };

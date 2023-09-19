@@ -1,9 +1,14 @@
 import { useState, Fragment, useEffect } from "react";
 import ExpenseDetails from "../components/ExpenseDetails";
+import { expenseActions } from "../store/expenseReducer";
+import { useDispatch,useSelector } from "react-redux";
 import axios from "axios";
 import './Expenses.css';
 
 const Expenses = () => {
+  const dispatch = useDispatch();
+  const totalAmount = useSelector(state => state.expnese.totalExpense);
+  const premium = totalAmount > 10000;
   const [expense, setExpense] = useState([]);
 
   const [amount, setAmount] = useState("");
@@ -19,6 +24,7 @@ const Expenses = () => {
       category,
     };
 
+    dispatch(expenseActions.addExpense(amountData.amount));
     const url =
       "https://expense-tracker-35591-default-rtdb.firebaseio.com/expense.json";
 
@@ -93,6 +99,8 @@ const Expenses = () => {
         <button className="add-button">Add Expenes</button>
       </form>
       <ExpenseDetails onDelete={handleExpenseDeletion} onEdit={handleExpenseEdit} expenses={expense} />
+      <div>{totalAmount}</div>
+    {premium && <button>Active Premium</button>}
     </Fragment>
   );
 };

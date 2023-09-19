@@ -1,20 +1,18 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import AuthContext from "../store/auth-context";
 import axios from "axios";
 import "./Welcom.css";
+import { useSelector } from "react-redux";
 
 const Welcome = () => {
-  const authCtx = useContext(AuthContext);
+  const idToken = useSelector((state) => state.auth.token);
   const verifyEmailHandler = async () => {
     const url =
       "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyC88eK8XQXRR6cU6LtbTCJppJE6RKh3xAA";
-    const token = authCtx.token;
     alert("Please Check your Email");
     try {
       const response = await axios.post(url, {
         requestType: "VERIFY_EMAIL",
-        idToken: token,
+        idToken: idToken,
       });
 
       if (response.status === 200) {
