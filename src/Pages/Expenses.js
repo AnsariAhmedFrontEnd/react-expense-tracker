@@ -76,6 +76,46 @@ const Expenses = () => {
 
   };
 
+  const downloadFileHandler = () => {
+    const csvData = generateCSV(expense);
+
+    const blob = new Blob([csvData], { type: 'text/csv' });
+
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = 'expenses.csv';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  };
+
+  const generateCSV = (data) => {
+    // Header row for CSV (adjust to match your data structure)
+    const header = ['Date', 'Description', 'Amount'];
+  
+    // Convert data objects into CSV rows
+    const csvRows = data.map((item) => {
+      const rowData = [
+        // Format the date as needed (e.g., item.date.toLocaleDateString())
+        item.date,
+        // Escape special characters and enclose description in double quotes
+        `"${item.description.replace(/"/g, '""')}"`,
+        // Format amount as needed (e.g., item.amount.toFixed(2))
+        item.amount,
+      ];
+      return rowData.join(',');
+    });
+  
+    // Combine header and rows into a complete CSV
+    const csvContent = [header.join(','), ...csvRows].join('\n');
+  
+    return csvContent;
+  };
+  
+
 
   const handleExpenseEdit = () => {};
 
@@ -87,6 +127,7 @@ const Expenses = () => {
   return (
     <Fragment>
      {isPremium && <Toggle />}
+     <button className="download-button" onClick={downloadFileHandler}>Downlaod Expenses</button>
       <form className="expenses-form" onSubmit={addExpenesHandler}>
         <input
         className="expense-amount"
@@ -112,7 +153,7 @@ const Expenses = () => {
       </form>
       <ExpenseDetails onDelete={handleExpenseDeletion} onEdit={handleExpenseEdit} expenses={expense} />
       <div>{totalAmount}</div>
-    {premium && <button onClick={activatePremiumHandler}>{isPremium ? 'Premium Activated' : 'Activate Premium'}</button>}
+    {premium && <button className="premium-button" onClick={activatePremiumHandler}>{isPremium ? 'Premium Activated' : 'Activate Premium'}</button>}
     </Fragment>
   );
 };
