@@ -11,7 +11,6 @@ const Expenses = () => {
   const dispatch = useDispatch();
   const totalAmount = useSelector(state => state.expnese.totalExpense);
   const isPremium = useSelector(state => state.expnese.isPremium);
-  const darkMode = useSelector(state => state.theme.theme);
   const premium = totalAmount > 10000;
   const [expense, setExpense] = useState([]);
 
@@ -77,10 +76,6 @@ const Expenses = () => {
 
   };
 
-  const downloadFileHandler = () => {
-    const blob = new Blob(expense);
-    
-  };
 
   const handleExpenseEdit = () => {};
 
@@ -92,7 +87,6 @@ const Expenses = () => {
   return (
     <Fragment>
      {isPremium && <Toggle />}
-     <button onClick={downloadFileHandler}>Download Expense</button>
       <form className="expenses-form" onSubmit={addExpenesHandler}>
         <input
         className="expense-amount"
