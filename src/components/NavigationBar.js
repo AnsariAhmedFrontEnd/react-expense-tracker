@@ -6,6 +6,7 @@ import './NavigationBar.css';
 const NavigationBar = () => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(state => state.auth.isAuthenticated);
+    const darkMode = useSelector(state => state.theme.theme);
     const navigate = useNavigate();
 
     const logoutHandler = () => {
@@ -14,7 +15,7 @@ const NavigationBar = () => {
         navigate('/');
     };
     return (
-        <header className="navbar">
+        <header className={`navbar ${darkMode ? 'dark' : ''}`}>
             <h2>SpendSmartly</h2>
             {isLoggedIn && <button onClick={logoutHandler}>Logout</button>}
         </header>

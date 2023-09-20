@@ -1,11 +1,13 @@
+/* Common styles for both modes */
 .navbar {
-  background-color: #006790;
   padding: 1rem;
   color: #fff; /* Header text color */
+  background-color: #006790;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar h2 {
@@ -27,4 +29,17 @@
 .navbar button:hover {
   background-color: #000000; /* Button background color on hover */
   color: #fff; /* Button text color on hover */
+}
+
+/* Dark mode styles */
+.navbar.dark {
+  background-color: #020202;
+}
+
+.navbar.dark button {
+  background-color: #333;
+}
+
+.navbar.dark button:hover {
+  background-color: #000;
 }

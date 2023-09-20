@@ -1,13 +1,17 @@
-import { useState, Fragment, useEffect } from "react";
+import { useState,useEffect } from "react";
 import ExpenseDetails from "../components/ExpenseDetails";
 import { expenseActions } from "../store/expenseReducer";
 import { useDispatch,useSelector } from "react-redux";
 import axios from "axios";
 import './Expenses.css';
+import Toggle from '../components/Toggle'
+import { Fragment } from "react";
 
 const Expenses = () => {
   const dispatch = useDispatch();
   const totalAmount = useSelector(state => state.expnese.totalExpense);
+  const isPremium = useSelector(state => state.expnese.isPremium);
+  const darkMode = useSelector(state => state.theme.theme);
   const premium = totalAmount > 10000;
   const [expense, setExpense] = useState([]);
 
@@ -68,13 +72,27 @@ const Expenses = () => {
     setExpense(updatedExpenses);
   };
 
+  const activatePremiumHandler = () => {
+    dispatch(expenseActions.activatePremium());
+
+  };
+
+  const downloadFileHandler = () => {
+    const blob = new Blob(expense);
+    
+  };
+
   const handleExpenseEdit = () => {};
+
+
   useEffect(() => {
     fetchExpenses();
   }, []);
 
   return (
     <Fragment>
+     {isPremium && <Toggle />}
+     <button onClick={downloadFileHandler}>Download Expense</button>
       <form className="expenses-form" onSubmit={addExpenesHandler}>
         <input
         className="expense-amount"
@@ -100,7 +118,7 @@ const Expenses = () => {
       </form>
       <ExpenseDetails onDelete={handleExpenseDeletion} onEdit={handleExpenseEdit} expenses={expense} />
       <div>{totalAmount}</div>
-    {premium && <button>Active Premium</button>}
+    {premium && <button onClick={activatePremiumHandler}>{isPremium ? 'Premium Activated' : 'Activate Premium'}</button>}
     </Fragment>
   );
 };

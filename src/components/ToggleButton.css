@@ -1,0 +1,44 @@
+  
+
+  .toggle-button.active {
+    background-color: #333;
+  }
+  
+  .slider {
+    width: 60px;
+    height: 30px;
+    background-color: #000000;
+    border-radius: 50px;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px 10px auto auto
+  }
+  
+  .circle {
+    width: 24px;
+    height: 24px;
+    background-color: #1fa848;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  }
+  
+  .circle.on {
+    transform: translateX(30px);
+    background-color: #089213;
+  }
+  
+  .circle.off {
+    transform: translateX(0);
+    background-color: #facc01;
+  }
+  
+  span {
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 0 10px;
+  }
+  
