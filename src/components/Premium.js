@@ -1,34 +1,31 @@
 import { Fragment } from "react";
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import { expenseActions } from "../store/expenseReducer";
-import './Premium.css';
+import "./Premium.css";
 
 const Premium = () => {
-    const dispatch = useDispatch();
-    const totalAmount = useSelector((state) => state.expnese.totalExpense);
+  const dispatch = useDispatch();
+  const totalAmount = useSelector((state) => state.expnese.totalExpense);
 
-    const premium = totalAmount > 10000;
-    const isPremium = useSelector((state) => state.expnese.isPremium);
+  const isPremium = useSelector((state) => state.expnese.isPremium);
 
-    const activatePremiumHandler = () => {
-        dispatch(expenseActions.activatePremium());
-      };
-    
+  const activatePremiumHandler = () => {
+    dispatch(expenseActions.activatePremium());
+  };
 
-    return (
-        <Fragment>
-            <div className="premium">
-                <h2>Total Expenses</h2>
-            <div className="amount">Rs. {totalAmount}</div>
-            {premium && (
-        <button className="premium-button" onClick={activatePremiumHandler}>
-          {isPremium ? "Premium Activated" : "Activate Premium"}
-        </button>
-
-      )}
+  return (
+    <Fragment>
+      <div className="premium">
+        <h2>Total Expenses</h2>
+        <div className="amount">Rs. {totalAmount}</div>
+        {totalAmount > 10000 && (
+          <button className="premium-button" onClick={activatePremiumHandler}>
+            {isPremium ? "Premium Activated" : "Activate Premium"}
+          </button>
+        )}
       </div>
-        </Fragment>
-    )
+    </Fragment>
+  );
 };
 
 export default Premium;
