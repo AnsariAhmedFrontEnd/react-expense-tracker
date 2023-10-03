@@ -1,0 +1,30 @@
+.premium {
+    width: 300px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 150px;
+    margin-top: 25px;
+}
+
+.amount {
+    font-size: 1.5rem;
+    background-color: #006790;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 2rem;
+    width: 90%;
+    text-align: center;
+    
+}
+
+.premium h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid black;
+}

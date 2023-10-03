@@ -1,51 +1,61 @@
 /* ExpenseDetails.css */
 
+.expense-item {
+  margin: auto;
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-  .expense-item {
-    width: 50%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .expense-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  
+}
 
-  
-  .expense-category {
-    font-style: italic;
-  }
-  
-  .expense-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .delete-button,
-  .edit-button {
-    background-color: #ff0000;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    margin-top: 5px;
-  }
-  
-  .delete-button:hover,
-  .edit-button:hover {
-    background-color: #d30000;
-  }
-  
+.expense-info {
+  padding: 8px 15px;
+  margin: 0 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 2px solid #033549;
+  border-radius: 12px;
+  background-color: #006790;
+  color: #fff;
+}
+
+.expense-details {
+  color: #fff;
+  padding: 4px;
+}
+
+.expense-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.delete-button,
+.edit-button {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 5px;
+}
+
+.edit-button {
+  background-color: #006790;
+}
+
+.delete-button:hover,
+.edit-button:hover {
+  background-color: #d30000;
+}

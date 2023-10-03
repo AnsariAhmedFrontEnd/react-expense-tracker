@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./Welcom.css";
 import { useSelector } from "react-redux";
+import "./Welcom.css";
 
 const Welcome = () => {
   const idToken = useSelector((state) => state.auth.token);
+
   const verifyEmailHandler = async () => {
     const url =
       "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyC88eK8XQXRR6cU6LtbTCJppJE6RKh3xAA";
@@ -24,6 +25,9 @@ const Welcome = () => {
       console.log(error);
     }
   };
+
+
+ 
   return (
     <div className="welcome-container">
       <div className="message">

@@ -4,8 +4,10 @@ import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 import { authActions } from "../store/authReducer";
 import { useDispatch, useSelector } from "react-redux";
+import { useFetchExpenses } from "../components/fetchExpense";
 
 const Login = () => {
+  const fetchExpenses = useFetchExpenses();
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.auth.isLogin);
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const Login = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
+
   const submitHandler = async (event) => {
     event.preventDefault();
 
@@ -35,11 +38,24 @@ const Login = () => {
         };
 
         const response = await axios.post(Loginurl, authData);
-        dispatch(authActions.login(response.data.idToken));
-        localStorage.setItem("token", response.data.idToken);
-        navigate("/welcome");
+        if (response.status === 200) {
+          localStorage.setItem("token", response.data.idToken);
+          localStorage.setItem("email", emailInput);
+
+          const token = localStorage.getItem("token");
+          const email = localStorage.getItem("email");
+          dispatch(authActions.login({ token, email }));
+          fetchExpenses(email);
+          navigate("/welcome");
+        } else {
+          alert("Unable to Login");
+        }
       } catch (error) {
-        alert(error.response.data.error.message);
+        if (error.response) {
+          alert(error.response.data.error.message);
+        }else{
+          alert('Unable to Login')
+        }
       }
     } else {
       //Signup Logic

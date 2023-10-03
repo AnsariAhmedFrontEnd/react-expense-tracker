@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { authActions } from "../store/authReducer";
 import { useDispatch, useSelector } from "react-redux";
 import './NavigationBar.css';
+import { expenseActions } from "../store/expenseReducer";
 
 const NavigationBar = () => {
     const dispatch = useDispatch();
@@ -11,7 +12,9 @@ const NavigationBar = () => {
 
     const logoutHandler = () => {
         dispatch(authActions.logout());
+        dispatch(expenseActions.resetExpenseState());
         localStorage.removeItem('token');
+        localStorage.removeItem('email');
         navigate('/');
     };
     return (
