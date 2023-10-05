@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "./Welcom.css";
 
 const Welcome = () => {
   const idToken = useSelector((state) => state.auth.token);
+  const navigate = useNavigate();
 
   const verifyEmailHandler = async () => {
     const url =
@@ -26,6 +27,11 @@ const Welcome = () => {
     }
   };
 
+  const handlerAddExpenes = () => {
+    navigate("/expenses");
+
+  };
+
  
   return (
     <div className="welcome-container">
@@ -41,9 +47,7 @@ const Welcome = () => {
         </div>
       </div>
       <div className="add-expense">
-        <Link to="expenses">
-          <button className="button">Add Expenses</button>
-        </Link>
+          <button className="button" onClick={handlerAddExpenes}>Add Expenses</button>
       </div>
     </div>
   );
