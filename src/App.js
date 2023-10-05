@@ -24,7 +24,7 @@ const App = () => {
         {isLoggedIn && <Route path="/welcome" element={<Welcome />} />}
         {isLoggedIn && <Route path="/profile" element={<Profile />} />}
         {isLoggedIn && (
-          <Route path="/welcome/expenses" element={<Expenses />} />
+          <Route path="/expenses" element={<Expenses />} />
         )}
         {!isLoggedIn && (
           <Route path="forgot-password" element={<ForgotPasswordPage />} />
